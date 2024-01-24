@@ -19,7 +19,7 @@ resource "aws_lb" "alb" {
 # ---------------------------------------------
 resource "aws_lb_listener" "aws_listener_http" {
   load_balancer_arn = aws_lb.alb.arn
-  port              = 80
+  port              = var.http_port
   protocol          = "HTTP"
 
   default_action {
@@ -30,7 +30,7 @@ resource "aws_lb_listener" "aws_listener_http" {
 
 resource "aws_lb_listener" "aws_listener_https" {
   load_balancer_arn = aws_lb.alb.arn
-  port              = 443
+  port              = var.https_port
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-2016-08"
   certificate_arn   = aws_acm_certificate.tokyo_cert.arn
@@ -46,7 +46,7 @@ resource "aws_lb_listener" "aws_listener_https" {
 # ---------------------------------------------
 resource "aws_lb_target_group" "alb_target_group" {
   name     = "${var.project}-${var.environment}-app-tg"
-  port     = 3000
+  port     = var.app_port
   protocol = "HTTP"
   vpc_id   = aws_vpc.vpc.id
 

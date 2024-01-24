@@ -105,7 +105,7 @@ resource "aws_autoscaling_group" "app_asg" {
         version            = "$Latest"
       }
       override {
-        instance_type = "t2.micro"
+        instance_type = var.ec2_instance_type
       }
     }
   }
