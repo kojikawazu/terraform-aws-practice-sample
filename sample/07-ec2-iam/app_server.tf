@@ -17,7 +17,7 @@ resource "aws_key_pair" "keypair" {
 # ---------------------------------------------
 resource "aws_instance" "app_server" {
   ami                         = data.aws_ami.app.id
-  instance_type               = "t2.micro"
+  instance_type               = var.ec2_instance_type
   subnet_id                   = aws_subnet.public_subnet_1a.id
   associate_public_ip_address = true
 
