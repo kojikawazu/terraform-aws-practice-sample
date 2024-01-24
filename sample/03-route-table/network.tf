@@ -2,7 +2,7 @@
 # VPC
 # ---------------------------------------------
 resource "aws_vpc" "vpc" {
-  cidr_block                       = "192.168.0.0/20"
+  cidr_block                       = var.vpc_address
   instance_tenancy                 = "default"
   enable_dns_support               = true
   enable_dns_hostnames             = true
@@ -22,7 +22,7 @@ resource "aws_vpc" "vpc" {
 resource "aws_subnet" "public_subnet_1a" {
   vpc_id                  = aws_vpc.vpc.id
   availability_zone       = "ap-northeast-1a"
-  cidr_block              = "192.168.11.0/24"
+  cidr_block              = var.public_1a_address
   map_public_ip_on_launch = true
 
   tags = {
@@ -33,10 +33,11 @@ resource "aws_subnet" "public_subnet_1a" {
   }
 }
 
+# public 1c
 resource "aws_subnet" "public_subnet_1c" {
   vpc_id                  = aws_vpc.vpc.id
   availability_zone       = "ap-northeast-1c"
-  cidr_block              = "192.168.12.0/24"
+  cidr_block              = var.public_1c_address
   map_public_ip_on_launch = true
 
   tags = {
@@ -47,10 +48,11 @@ resource "aws_subnet" "public_subnet_1c" {
   }
 }
 
+# private 1a
 resource "aws_subnet" "private_subnet_1a" {
   vpc_id                  = aws_vpc.vpc.id
   availability_zone       = "ap-northeast-1a"
-  cidr_block              = "192.168.13.0/24"
+  cidr_block              = var.private_1a_address
   map_public_ip_on_launch = false
 
   tags = {
@@ -61,10 +63,11 @@ resource "aws_subnet" "private_subnet_1a" {
   }
 }
 
+# private 1c
 resource "aws_subnet" "private_subnet_1c" {
   vpc_id                  = aws_vpc.vpc.id
   availability_zone       = "ap-northeast-1c"
-  cidr_block              = "192.168.14.0/24"
+  cidr_block              = var.private_1c_address
   map_public_ip_on_launch = false
 
   tags = {
