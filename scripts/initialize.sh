@@ -13,6 +13,7 @@ sudo sed -i 's/80/3000/g' /etc/nginx/nginx.conf
 
 sudo systemctl start nginx
 sudo systemctl enable nginx
+sudo systemctl restart nginx
 
 # DB Client
 sudo yum -y install mariadb105

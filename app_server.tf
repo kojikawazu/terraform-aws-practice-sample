@@ -82,9 +82,9 @@ resource "aws_launch_template" "app_lt" {
 resource "aws_autoscaling_group" "app_asg" {
   name = "${var.project}-${var.environment}-app-asg"
 
-  max_size         = 1
-  min_size         = 1
-  desired_capacity = 1
+  max_size         = 2
+  min_size         = 2
+  desired_capacity = 2
 
   health_check_grace_period = 300
   health_check_type         = "ELB"
