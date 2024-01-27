@@ -162,7 +162,7 @@ resource "aws_security_group_rule" "db_in_tcp3306" {
   security_group_id        = aws_security_group.db_sg.id
   type                     = "ingress"
   protocol                 = "tcp"
-  from_port                = var.https_port
-  to_port                  = var.https_port
+  from_port                = var.db_port
+  to_port                  = var.db_port
   source_security_group_id = aws_security_group.app_sg.id
 }
